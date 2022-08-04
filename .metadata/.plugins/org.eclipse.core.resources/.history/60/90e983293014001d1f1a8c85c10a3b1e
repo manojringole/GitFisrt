@@ -1,0 +1,27 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.Student;
+import com.example.demo.service.ServiceI;
+
+@RestController
+public class StudentController {
+	
+	@Autowired
+	private ServiceI serviceI;
+	
+	public ResponseEntity<String> saveStudent(@RequestBody Student student){
+		
+		Student student1 = serviceI.savestudent(student);
+		System.out.println(student1);
+		
+		return new ResponseEntity<>("saved:" +student1.getStudentId(),HttpStatus.OK);
+		
+	}
+
+}
